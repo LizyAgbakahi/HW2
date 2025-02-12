@@ -221,10 +221,17 @@ public class BinaryTree {
      */
 
     private void replaceValueHelper(Node node, int oldVal, int newVal) {
+        // Base case that ends recursion : end of tree
+        if (node == null) return;
 
-        // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
-        // BINARY TREE (WHICH IS BASED ON RECURSION)
+        // Replace old value with new value if old value is found
+        if (node.data == oldVal) {
+            node.data = newVal;
+        }
 
+        //Recursively traverse the left and right subtrees to do replacements
+        replaceValueHelper(node.left, oldVal, newVal);
+        replaceValueHelper(node.right, oldVal, newVal);
     }
 
 
@@ -244,8 +251,7 @@ public class BinaryTree {
 
     private int findMinHelper(Node node) {
 
-        // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
-        // BINARY TREE (WHICH IS BASED ON RECURSION)
+        //B
 
         return Integer.MAX_VALUE;
     }
