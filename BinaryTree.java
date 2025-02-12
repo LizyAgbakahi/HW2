@@ -281,14 +281,25 @@ public class BinaryTree {
      */
 
     private int nodesGTHelper(Node node, int val) {
+        // Base case to end recursion: If the current node is null, return 0
+        if (node == null) {
+            return 0;
+        }
 
-        // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
-        // BINARY TREE (WHICH IS BASED ON RECURSION)
+        // Initialize count to 0
+        int count = 0;
 
-        // return -1; // RECALL, IF TREE IS EMPTY, RETURN -1
+        // Check if the current node's data is greater than val, increment count by 1
+        if (node.data > val) {
+            count = 1;
+        }
 
+        // Recursively count the nodes greater than val in the left and right subtrees
+        count += nodesGTHelper(node.left, val);
+        count += nodesGTHelper(node.right, val);
 
-        return -1;
+        // Return the total count of nodes greater than val
+        return count;
     }
 
 
