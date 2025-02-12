@@ -221,7 +221,7 @@ public class BinaryTree {
      */
 
     private void replaceValueHelper(Node node, int oldVal, int newVal) {
-        // Base case that ends recursion : end of tree
+        // Base case that ends recursion : end of tree or empty node
         if (node == null) return;
 
         // Replace old value with new value if old value is found
@@ -250,10 +250,20 @@ public class BinaryTree {
      */
 
     private int findMinHelper(Node node) {
+        // Base case that ends recursion: If node is null (empty subtree) , return a large value
+        if (node == null) {
+            return Integer.MAX_VALUE;
+        }
 
-        //B
+        // Recursively find the minimum values in the left and right subtrees
+        int leftMin = findMinHelper(node.left);
+        int rightMin = findMinHelper(node.right);
 
-        return Integer.MAX_VALUE;
+        // Get the minimum value between the left and right subtree minimums
+        int smallestValue = Math.min(leftMin, rightMin);
+
+        // Return the smaller value between the current node's value and the smallest subtree value
+        return Math.min(node.data, smallestValue);
     }
 
 
