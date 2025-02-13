@@ -2,6 +2,9 @@
 /*
  * *** PLACE YOUR NAME / SECTION HERE ***
  *
+ * Lizy Agbakahi
+ * COMP 400C Spring 2025
+ *
  * Homework # 2 (Programming Assignment). This Java class defines a few basic
  * manipulation operations of a binary trees.
  *
@@ -330,14 +333,22 @@ public class BinaryTree {
     }
 
     private int[] averageHelper(Node n) {
+        // Base case to end recursion: if node is null, return an array with 0 for both sum and count;
+        if (n == null) {
+            return new int[]{0,0};
+        }
 
-        // ADD YOUR CODE HERE -- USE DEPTH FIRST SEARCH OF
-        // BINARY TREE (WHICH IS BASED ON RECURSION)
+        // Recursively compute the sum and count for the left and right subtrees
+        int[] leftResult = averageHelper(n.left);
+        int[] rightResult = averageHelper(n.right);
 
-        // RECALL, IF THE TREE IS EMPTY, RETURN 0 FOR BOTH THE SUM AND
-        // COUNT LOCATIONS IN THE RETURNED ARRAY AS SHOWN BELOW, ELSE
-        // THE 'SUM' IS RETURNED IN INDEX LOCATION 0, AND COUNT IS LOCATION 1
+        // Calculate the overall sum: current node's value + sum of left and right subtrees
+        int totalSum = n.data + leftResult[0] + rightResult[0];
 
-        return new int[]{0, 0};
+        // Calculate the total count: current node + count from left and right subtrees
+        int totalCount = 1 + leftResult[1] + rightResult[1];
+
+        // Return an array containing the total sum and total count
+        return new int[]{totalSum, totalCount};
     }
 }
